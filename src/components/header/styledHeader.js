@@ -9,6 +9,7 @@ export const HeaderSection = styled.header`
     margin: auto;
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
 `
 export const Top = styled.div`
     width: 100%;
