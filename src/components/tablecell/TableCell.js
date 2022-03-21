@@ -13,8 +13,6 @@ import {
 
 const TableCell = (props) => {
 
-    console.log(props.coin)
-
     const SelectData = () => {
         if (props.coin.hasOwnProperty('heart')) {
             return (
