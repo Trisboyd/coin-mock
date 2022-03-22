@@ -1,69 +1,29 @@
 import { XYPlot, VerticalBarSeries, LineMarkSeries } from 'react-vis';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Bottom, Number, Section, Text, Top, WeekText, Wrapper } from './styledGraphs';
-import coinApi from '../../utilities/CoinApi';
 
 const Graphs = (props) => {
 
-    const [priceData, setPriceData] = useState([]);
-
-    const [marketCap, setMarketCap] = useState([]);
-
-    const [volumeData, setVolumeData] = useState([]);
-
-    const [searchCoin, setSearchCoin] = useState('');
-
+    // _______________________________________day of data being viewed
     const [priceDay, setPriceDay] = useState('');
 
     const [marketDay, setMarketDay] = useState('');
 
     const [volumeDay, setVolumeDay] = useState('');
 
+    // _________________________________________ whether graph is being viewed or not
     const [mousePrice, setMousePrice] = useState(false);
 
     const [mouseMarket, setMouseMarket] = useState(false);
 
     const [mouseVolume, setMouseVolume] = useState(false);
 
+    // _________________________________________ price of section of graph being viewed
     const [currentPrice, setCurrentPrice] = useState('');
 
     const [currentMarket, setCurrentMarket] = useState('');
 
     const [currentVolume, setCurrentVolume] = useState('');
-
-    const getCoinData = (name) => {
-        name = name.toLowerCase();
-        coinApi.getMarketData().then(response => {
-            response.forEach(res => {
-                if (res.id === name) {
-                    setSearchCoin(res)
-                }
-            })
-        })
-        console.log(searchCoin)
-    }
-
-    const getWeekData = (coin) => {
-        // props.coin instead of bitcoin here
-        coinApi.getWeek(coin).then(response => {
-            let priceArr = response.prices.map((num, numIndex) => {
-                return { x: numIndex, y: num[1].toFixed(2) }
-            })
-            let marketArr = response.market_caps.map((num, numIndex) => {
-                return { x: numIndex, y: num[1].toFixed(2) }
-            })
-            let volumeArr = response.total_volumes.map((num, numIndex) => {
-                return { x: numIndex, y: num[1].toFixed(2) }
-            })
-            setPriceData(priceArr);
-            setMarketCap(marketArr);
-            setVolumeData(volumeArr);
-        })
-    }
-
-    // useEffect(() => {
-    //     getWeekData(searchCoin);
-    // }, [searchCoin]);
 
     // ________________________________________current date
     const curDate = new Date();
@@ -110,13 +70,13 @@ const Graphs = (props) => {
                     <Number>{`$${currentPrice}`}</Number>
                 </Top>
                 <Bottom>
-                    {priceData &&
+                    {props.priceData &&
                         <XYPlot
                             height={100}
                             width={228}
                             style={{ position: 'relative' }}>
                             <LineMarkSeries
-                                data={priceData}
+                                data={props.priceData}
                                 color='#43dbd6A0'
                                 style={{ fill: 'none' }}
                                 onNearestXY={(value, index) => {
@@ -124,7 +84,7 @@ const Graphs = (props) => {
                                     setCurrentPrice(value.y)
                                 }} />
                             <LineMarkSeries
-                                data={priceData}
+                                data={props.priceData}
                                 strokeWidth={50}
                                 stroke='transparent'
                                 color='transparent'
@@ -150,13 +110,13 @@ const Graphs = (props) => {
                 </Top>
                 <Bottom>
                     {
-                        marketCap &&
+                        props.marketCap &&
                         <XYPlot
                             height={100}
                             width={228}
                             style={{ position: 'relative' }}>
                             <VerticalBarSeries
-                                data={marketCap}
+                                data={props.marketCap}
                                 color='#43dbd6A0'
                                 style={{ fill: 'black', overflow: 'hidden' }}
                                 onSeriesMouseOver={() => {
@@ -181,13 +141,13 @@ const Graphs = (props) => {
                 </Top>
                 <Bottom>
                     {
-                        volumeData &&
+                        props.volumeData &&
                         <XYPlot
                             height={100}
                             width={228}
                             style={{ position: 'relative' }}>
                             <LineMarkSeries
-                                data={volumeData}
+                                data={props.volumeData}
                                 color='#43dbd6A0'
                                 style={{ fill: 'none' }}
                                 onNearestXY={(value, index) => {
@@ -195,7 +155,7 @@ const Graphs = (props) => {
                                     setCurrentVolume(convertNum(value.y))
                                 }} />
                             <LineMarkSeries
-                                data={volumeData}
+                                data={props.volumeData}
                                 strokeWidth={50}
                                 stroke='transparent'
                                 color='transparent'
@@ -217,3 +177,19 @@ const Graphs = (props) => {
 }
 
 export default Graphs;
+
+    // const getCoinData = (name) => {
+    //     name = name.toLowerCase();
+    //     coinApi.getMarketData().then(response => {
+    //         response.forEach(res => {
+    //             if (res.id === name) {
+    //                 setSearchCoin(res)
+    //             }
+    //         })
+    //     })
+    //     console.log(searchCoin)
+    // }
+
+        // useEffect(() => {
+    //     getWeekData(searchCoin);
+    // }, [searchCoin]);
