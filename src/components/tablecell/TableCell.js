@@ -36,7 +36,7 @@ const TableCell = (props) => {
         }
         else return (
             <CellText
-                color={props.coin.color}>
+                color={props.coin.negative}>
                 {props.coin.value}
             </CellText>
         )

@@ -11,15 +11,11 @@ const {
 
 const Table = () => {
 
-    const [coinData, setCoinData] = useState([]);
+    const [coinData, setCoinData] = useState(null);
 
-    const [weekData, setWeekData] = useState([]);
+    const [weekData, setWeekData] = useState(null);
 
-    const [hourData, setHourData] = useState([]);
-
-    // const weekData = [];
-
-    // const hourData = [];
+    const [hourData, setHourData] = useState(null);
 
     const [allData, setAllData] = useState([]);
 
@@ -29,93 +25,79 @@ const Table = () => {
 
     let tempArr = [];
 
+    const [searchCoin, setSearchCoin] = useState('');
+
     // ____________________________________collect data from coinApi methods
     const getMarketData = coinApi.getMarketData();
 
-    const getAllData = () => {
-        tempArr = [];
-        getMarketData.then(
-            response => {
-                const $coinData = response;
-                response.forEach((coin) => {
-                    Promise.all([
-                        // use coin ids to get specific market info
-                        coinApi.get24Volume(coin.id),
-                        coinApi.getWeek(coin.id)])
-                        .then(values => {
-                            // push onto temporary arrays
-                            tempHourData.push(values[0]);
-                            tempWeekData.push(values[1]);
-                        })
-                        .then(() => {
-                            // populate state arrays with final temp arrays
-                            // setHourData(tempHourData);
-                            // setWeekData(tempWeekData);
-                            $coinData.forEach((coin, coinIndex) => {
-                                const NewData = new ParseData(coin, tempWeekData[coinIndex], tempHourData[coinIndex])
-                                NewData.parse();
-                                const finalData = NewData.currentCoin;
-                                tempArr.push(finalData);
-                                // console.log(finalData[1].symbol)
-                            })
-                        })
-                })
+    const getCoinData = (name) => {
+        name = name.toLowerCase();
+        coinApi.getMarketData().then(response => {
+            response.forEach(res => {
+                if (res.id === name) {
+                    setSearchCoin(res)
+                }
             })
-        console.log(tempArr);
+        })
+        console.log(searchCoin)
     }
 
+    const getAllData = (name) => {
+        let searchCoin = '';
+        tempArr = [];
+        getMarketData.then(response => {
+            response.forEach((coin) => {
+                if (coin.id === name) {
+                    setCoinData(coin);
+                    searchCoin = coin;
+                }
+                else return;
+            })
+            Promise.all([
+                coinApi.get24Volume(searchCoin.id),
+                coinApi.getWeek(searchCoin.id)
+            ])
+                .then(values => {
+                    setHourData(values[0]);
+                    setWeekData(values[1]);
+                })
+            // .then(() => {
+            //     setHourData(tempHourData);
+            //     setWeekData(tempWeekData);
+            // })
+        })
+    }
+
+
     // _________________ collect new data onreload or every span of time
-    // useEffect(() => {
-    //     getAllData();
-    // }, []);
+    useEffect(() => {
+        getAllData('bitcoin');
+    }, []);
 
-    // useEffect(() => {
-    //     setAllData(tempArr);
-    // }, []);
+    useEffect(() => {
+        // console.log(weekData, hourData);
+        if (!coinData) {
+            console.log('Coin Data not here')
+            return
+        }
+        if (!weekData) {
+            console.log('Week Data not here')
+            return
+        }
+        if (!hourData) {
+            console.log('Hour Data not here')
+            return
+        }
+        // let tempArr = [];
+        const NewData = new ParseData(coinData, weekData, hourData)
+        NewData.parse();
+        const finalData = NewData.currentCoin;
+        console.log(finalData)
+        // tempArr.push(finalData);
+        // console.log(finalData)
+        setAllData(finalData);
+    }, [coinData, weekData, hourData]);
 
-    // useEffect(() => {
-    //     // console.log(weekData, hourData);
-    //     if (!coinData) {
-    //         console.log('Coin Data not here')
-    //         return
-    //     }
-    //     if (weekData.length < 10) {
-    //         console.log('Week Data not here')
-    //         console.log({ weekData: weekData.length })
-    //         return
-    //     }
-    //     if (hourData.length < 10) {
-    //         console.log('Hour Data not here')
-    //         return
-    //     }
-    //     if (!allData) {
-    //         return
-    //     }
-    //     let tempArr = [];
-    //     coinData.forEach((coin, coinIndex) => {
-    //         const NewData = new ParseData(coin, weekData[coinIndex], hourData[coinIndex])
-    //         NewData.parse();
-    //         const finalData = NewData.currentCoin;
-    //         tempArr.push(finalData);
-    //         // console.log(finalData[1].symbol)
-    //     })
-    //     setAllData(tempArr);
-    // }, [coinData, weekData, hourData, allData]);
-
-    // const createTable = () => {
-    //     console.log(allData);
-    //     allData.map((coin) => {
-    //         return (
-    //             <Row>
-    //                 {coin.map((data) => {
-    //                     return (
-    //                         <TableCell coin={data} />
-    //                     )
-    //                 })}
-    //             </Row>
-    //         )
-    //     })
-    // }
 
     return (
         <InfoTable>
@@ -130,18 +112,14 @@ const Table = () => {
                     })}
                 </Row>
                 {allData &&
-                    allData.map((coin, coinIndex) => {
-                        return (
-                            <Row key={coinIndex}>
-                                {coin.map((data, coinIndex) => {
-                                    return (
-                                        <TableCell
-                                            key={coinIndex} coin={data} />
-                                    )
-                                })}
-                            </Row>
-                        )
-                    })
+                    <Row>
+                        {allData.map((data, dataIndex) => {
+                            return (
+                                <TableCell
+                                    key={dataIndex} coin={data} />
+                            )
+                        })}
+                    </Row>
                 }
             </Head>
         </InfoTable>
@@ -149,3 +127,30 @@ const Table = () => {
 }
 
 export default Table;
+
+    //                 response.forEach((coin) => {
+    //                 Promise.all([
+    //                     // use coin ids to get specific market info
+    //                     coinApi.get24Volume(coin.id),
+    //                     coinApi.getWeek(coin.id)])
+    //                     .then(values => {
+    //                         // push onto temporary arrays
+    //                         tempHourData.push(values[0]);
+    //                         tempWeekData.push(values[1]);
+    //                     })
+    //                     .then(() => {
+    //                         // populate state arrays with final temp arrays
+    //                         // setHourData(tempHourData);
+    //                         // setWeekData(tempWeekData);
+    //                         $coinData.forEach((coin, coinIndex) => {
+    //                             const NewData = new ParseData(coin, tempWeekData[coinIndex], tempHourData[coinIndex])
+    //                             NewData.parse();
+    //                             const finalData = NewData.currentCoin;
+    //                             tempArr.push(finalData);
+    //                             // console.log(finalData[1].symbol)
+    //                         })
+    //                     })
+    //             })
+    //             })
+    //         console.log(tempArr);
+    // }

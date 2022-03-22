@@ -18,11 +18,6 @@ export const TableData = {
         },
         {
             name: 'Volume 24h'
-
-
-        },
-        {
-            name: 'Liquidity ±2%'
         },
         {
             name: 'All-time High'
@@ -33,10 +28,6 @@ export const TableData = {
         {
             name: '24h'
         },
-        {
-            name: 'Weekly'
-
-        }
     ],
     coins: [
         [
@@ -79,16 +70,3 @@ export const TableData = {
         ]
     ]
 }
-
-// symbol: 'btc',
-// name: 'Bitcoin'
-// image: '',
-// current_price: '',
-// market_cap: '',
-// volume 24hrs,
-// ath,
-// change_in_hr
-// weekly change
-// // liquidity
-// total_volume: '',
-// price_change_percentage_24h: '',

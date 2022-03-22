@@ -35,9 +35,9 @@ class ParseData {
 
     _showSign = (num) => {
         if (num < 0) {
-            return true;
+            return 'red';
         }
-        else return false;
+        else return 'green';
     }
 
     _24Volume = () => {
@@ -52,22 +52,14 @@ class ParseData {
         const hour2 = this._hour.prices[length - 1][1];
         if (hour2 > hour1) {
             let change = hour2 / hour1;
-            this._hourDiff = false;
+            this._hourDiff = 'green';
             return `${change.toFixed(2)}%`
         }
         else {
             let change = hour1 / hour2;
-            this._hourDiff = true;
+            this._hourDiff = 'red';
             return `${change.toFixed(2)}%`
         }
-    }
-
-    _weekPrices = () => {
-        let prices = [];
-        this._week.prices.forEach((price) => {
-            prices.push(price[1]);
-        })
-        return prices;
     }
 
     parse = () => {
@@ -92,10 +84,6 @@ class ParseData {
                 value: `$${this._24Volume()}`
             },
             {
-                name: 'liquid',
-                value: '$1.2 B'
-            },
-            {
                 name: 'ath',
                 value: `$${this._coin.ath}`
             },
@@ -107,14 +95,9 @@ class ParseData {
             {
                 name: 'day',
                 value: `${this._removeSign(this._coin.market_cap_change_percentage_24h)}%`,
+                // value: `${this._coin.market_cap_change_percentage_24h}%`,
                 negative: this._showSign(this._coin.market_cap_change_percentage_24h)
             },
-            {
-                name: 'weekly',
-                value: null
-                // will be graph using this data
-                // this._weekPrices()
-            }
         ]
         return this.currentCoin;
     }

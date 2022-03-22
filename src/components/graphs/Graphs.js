@@ -51,10 +51,9 @@ const Graphs = (props) => {
         })
     }
 
-    useEffect(() => {
-        getWeekData();
-        // getAggMarket();
-    }, []);
+    // useEffect(() => {
+    //     getWeekData();
+    // }, []);
 
 
     const getCoinData = (name) => {

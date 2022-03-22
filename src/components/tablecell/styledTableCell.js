@@ -1,12 +1,23 @@
 import styled from 'styled-components';
 
+const handleColor = color => {
+    switch (color) {
+        case 'red':
+            return '#ff7060';
+        case 'green':
+            return '#26da71';
+        default:
+            return 'white';
+    }
+};
+
 export const Cell = styled.td`
     width: ${props => props.width};
     height: 49.1px;
 `
 export const CellText = styled.p`
-    color: ${props => props.color ? props.color : 'white'};
-    font-size: 13px;
+    color: ${(props) => handleColor(props.color)}};
+    font-size: 16px;
     font-weight: 400;
     text-align: right;
     vertical-align: center;
