@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const Section = styled.section`
-    width: 74.24%;
+export const Section = styled.div`
+    width: 100%;
     margin: auto;
     display: flex;
     justify-content: space-around;

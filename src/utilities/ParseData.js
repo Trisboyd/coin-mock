@@ -95,7 +95,6 @@ class ParseData {
             {
                 name: 'day',
                 value: `${this._removeSign(this._coin.market_cap_change_percentage_24h)}%`,
-                // value: `${this._coin.market_cap_change_percentage_24h}%`,
                 negative: this._showSign(this._coin.market_cap_change_percentage_24h)
             },
         ]

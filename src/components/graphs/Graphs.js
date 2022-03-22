@@ -31,11 +31,21 @@ const Graphs = (props) => {
 
     const [currentVolume, setCurrentVolume] = useState('');
 
-    console.log(priceData[7])
+    const getCoinData = (name) => {
+        name = name.toLowerCase();
+        coinApi.getMarketData().then(response => {
+            response.forEach(res => {
+                if (res.id === name) {
+                    setSearchCoin(res)
+                }
+            })
+        })
+        console.log(searchCoin)
+    }
 
-    const getWeekData = () => {
+    const getWeekData = (coin) => {
         // props.coin instead of bitcoin here
-        coinApi.getWeek('bitcoin').then(response => {
+        coinApi.getWeek(coin).then(response => {
             let priceArr = response.prices.map((num, numIndex) => {
                 return { x: numIndex, y: num[1].toFixed(2) }
             })
@@ -52,28 +62,13 @@ const Graphs = (props) => {
     }
 
     // useEffect(() => {
-    //     getWeekData();
-    // }, []);
-
-
-    const getCoinData = (name) => {
-        name = name.toLowerCase();
-        coinApi.getMarketData().then(response => {
-            response.forEach(res => {
-                if (res.id === name) {
-                    setSearchCoin(res)
-                }
-            })
-        })
-        console.log(searchCoin)
-    }
-
-    // getAggMarket();
-    // getCoinData('ethereum')
+    //     getWeekData(searchCoin);
+    // }, [searchCoin]);
 
     // ________________________________________current date
     const curDate = new Date();
 
+    //  _______________________ date object for graph dates
     const dateObject = {
         7: 0,
         6: 1,
