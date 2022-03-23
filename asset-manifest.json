@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/coin-mock/static/css/main.d31f7457.css",
+    "main.js": "/coin-mock/static/js/main.6be0baca.js",
+    "static/js/787.7b378b80.chunk.js": "/coin-mock/static/js/787.7b378b80.chunk.js",
+    "static/media/heart.svg": "/coin-mock/static/media/heart.b10ef1460755bc0b9d7ed7fd96489caa.svg",
+    "index.html": "/coin-mock/index.html",
+    "main.d31f7457.css.map": "/coin-mock/static/css/main.d31f7457.css.map",
+    "main.6be0baca.js.map": "/coin-mock/static/js/main.6be0baca.js.map",
+    "787.7b378b80.chunk.js.map": "/coin-mock/static/js/787.7b378b80.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d31f7457.css",
+    "static/js/main.6be0baca.js"
+  ]
+}
