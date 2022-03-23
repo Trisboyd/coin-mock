@@ -18,14 +18,14 @@ export const MainDiv = styled.div`
 `
 export const InputSection = styled.div`
     width: 100%;
-    height: 30vh;
+    min-height: 30vh;
     background: #293143;
     display: flex;
     flex-direction: column;
     align-items: center;
     `
 export const InputTitle = styled.h2`
-    font-size: 44px;
+    font-size: 36px;
     font-weight: 400;
     line-height: 1.4;
     color: white;
@@ -34,28 +34,13 @@ export const InputTitle = styled.h2`
 `
 export const InputWrapper = styled.form`
     width: 80%;
-    height: 20%;
+    height: 55px;
     position: relative;
     margin: 20px auto;
     border: none;
     outline: none;
     display: flex;
     align-items: center;
-
-    @media (max-width: 768px) {
-        width: 50vw;
-        height: 50px;
-    }
-
-    @media (max-width: 525px) {
-        width: 60vw;
-        height: 40px;
-    }
-
-    @media (max-width: 400px) {
-        width: 80vw;
-        height: 25px;
-    }
 `
 
 export const Input = styled.input`

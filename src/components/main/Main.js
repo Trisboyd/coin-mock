@@ -44,7 +44,9 @@ const Main = () => {
             response.forEach((coin) => {
                 if (coin.id === name.toLowerCase()
                     ||
-                    coin.symbol === name.toLowerCase()) {
+                    coin.symbol === name.toLowerCase()
+                    ||
+                    coin.name.toLowerCase() === name.toLowerCase()) {
                     setCoinData(coin); // first batch of info
                     searchCoin = coin;
                 }
@@ -57,6 +59,7 @@ const Main = () => {
                 .then(values => {
                     setHourData(values[0]); // data for price change in hour
                     setWeekData(values[1]); // data for price change in day
+                    getWeekData(values[1]); // data for graphs
                 })
         })
     }
@@ -87,7 +90,6 @@ const Main = () => {
         const NewData = new ParseData(coinData, weekData, hourData)
         NewData.parse();
         const finalData = NewData.currentCoin;
-        console.log(finalData)
         setAllData(finalData);
     }, [coinData, weekData, hourData]);
 
@@ -102,23 +104,38 @@ const Main = () => {
 
 
     // _________________________________api call for gathering market data
-    const getWeekData = (coin) => {
-        // gather data then insert into state variables
-        coin = coin.toLowerCase();
-        coinApi.getWeek(coin).then(response => {
-            let priceArr = response.prices.map((num, numIndex) => {
-                return { x: numIndex, y: num[1].toFixed(2) }
-            })
-            let marketArr = response.market_caps.map((num, numIndex) => {
-                return { x: numIndex, y: num[1].toFixed(2) }
-            })
-            let volumeArr = response.total_volumes.map((num, numIndex) => {
-                return { x: numIndex, y: num[1].toFixed(2) }
-            })
-            setPriceData(priceArr);
-            setMarketCap(marketArr);
-            setVolumeData(volumeArr);
+    // const getWeekData = (coin) => {
+    //     // gather data then insert into state variables
+    //     coin = coin.toLowerCase();
+    //     coinApi.getWeek(coin).then(response => {
+    //         let priceArr = response.prices.map((num, numIndex) => {
+    //             return { x: numIndex, y: num[1].toFixed(2) }
+    //         })
+    //         let marketArr = response.market_caps.map((num, numIndex) => {
+    //             return { x: numIndex, y: num[1].toFixed(2) }
+    //         })
+    //         let volumeArr = response.total_volumes.map((num, numIndex) => {
+    //             return { x: numIndex, y: num[1].toFixed(2) }
+    //         })
+    //         setPriceData(priceArr);
+    //         setMarketCap(marketArr);
+    //         setVolumeData(volumeArr);
+    //     })
+    // }
+
+    const getWeekData = (data) => {
+        let priceArr = data.prices.map((num, numIndex) => {
+            return { x: numIndex, y: num[1].toFixed(2) }
         })
+        let marketArr = data.market_caps.map((num, numIndex) => {
+            return { x: numIndex, y: num[1].toFixed(2) }
+        })
+        let volumeArr = data.total_volumes.map((num, numIndex) => {
+            return { x: numIndex, y: num[1].toFixed(2) }
+        })
+        setPriceData(priceArr);
+        setMarketCap(marketArr);
+        setVolumeData(volumeArr);
     }
 
     // INPUT______________________________________________________ INPUT
@@ -134,7 +151,7 @@ const Main = () => {
     const submitSearch = (event) => {
         event.preventDefault();
         getAllData(searchItem);
-        getWeekData(searchItem);
+        // getWeekData(searchItem);
     }
 
     return (

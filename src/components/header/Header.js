@@ -26,6 +26,8 @@ const Header = () => {
         setOpenCurrency(!openCurrency);
     }
 
+
+
     // ______________________________________________ Links
 
     const [hover, setHover] = useState(false);

@@ -68,6 +68,7 @@ export const Currency = styled.div`
     justify-content: center;
     position: relative;
     margin: 0 10px;
+    cursor: pointer;
 `
 export const Search = styled.div`
     border-radius: 6px;
@@ -78,6 +79,7 @@ export const Search = styled.div`
     position: relative;
     display: flex;
     background: rgb(33,35,47);
+    padding-left: 5px;
 `
 export const SearchImg = styled.img`
     width: 22.4px;
@@ -171,6 +173,7 @@ export const Option = styled.button`
     border: none;
     padding: 7px 15px 8px;
     background: inherit;
+    cursor: pointer;
 
     &:last-of-type {
         border-radius: 0 0 6px 6px;

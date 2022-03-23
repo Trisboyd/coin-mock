@@ -4,22 +4,20 @@ export const InfoTable = styled.table`
     width: 100%;
     background: inherit;
     margin: auto;
+    border-bottom: 1px solid black;
 `
 export const Head = styled.thead`
     height: 35px;
-    border-bottom: 1px solid rgb(33, 35, 47);
-    border-top: 1px solid rgb(33, 35, 47);
-    
 `
 export const Row = styled.tr`
     width: 88.3%;
-    border-bottom: 1px solid black;
 `
 export const HeadData = styled.th`
     width: ${props => props.width};
     color: white;
     font-size: 14px;
     text-align: right;
+    border-bottom: 1px solid black; 
 
     &:first-of-type{
         width: 4.87%;

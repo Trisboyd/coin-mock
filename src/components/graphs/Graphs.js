@@ -1,4 +1,9 @@
-import { XYPlot, VerticalBarSeries, LineMarkSeries } from 'react-vis';
+import {
+    XYPlot,
+    VerticalBarSeries,
+    LineMarkSeries
+}
+    from 'react-vis';
 import { useState } from 'react';
 import { Bottom, Number, Section, Text, Top, WeekText, Wrapper } from './styledGraphs';
 
@@ -78,7 +83,7 @@ const Graphs = (props) => {
                             <LineMarkSeries
                                 data={props.priceData}
                                 color='#43dbd6A0'
-                                style={{ fill: 'none' }}
+                                // style={{ fill: 'none' }}
                                 onNearestXY={(value, index) => {
                                     formatDate(curDate, index.index);
                                     setCurrentPrice(value.y)
@@ -105,6 +110,37 @@ const Graphs = (props) => {
             </Wrapper>
             <Wrapper>
                 <Top>
+                    <Text>DAILY VOLUMES</Text>
+                    <Number>{`$${currentVolume}`}</Number>
+                </Top>
+                <Bottom>
+                    {
+                        props.volumeData &&
+                        <XYPlot
+                            height={100}
+                            width={228}
+                            style={{ position: 'relative' }}>
+                            <VerticalBarSeries
+                                data={props.volumeData}
+                                color='#43dbd6A0'
+                                style={{ fill: 'black', overflow: 'hidden' }}
+                                onSeriesMouseOver={() => {
+                                    setMouseVolume(true)
+                                }}
+                                onSeriesMouseOut={() => {
+                                    setMouseVolume(false)
+                                }}
+                                onNearestXY={(value, index) => {
+                                    formatDate(curDate, index.index);
+                                    setCurrentVolume(convertNum(value.y))
+                                }} />
+                            <WeekText>{mouseVolume ? volumeDay : '7d'}</WeekText>
+                        </XYPlot>
+                    }
+                </Bottom>
+            </Wrapper>
+            <Wrapper>
+                <Top>
                     <Text>MARKET CAP</Text>
                     <Number>{`$${currentMarket}`}</Number>
                 </Top>
@@ -115,44 +151,13 @@ const Graphs = (props) => {
                             height={100}
                             width={228}
                             style={{ position: 'relative' }}>
-                            <VerticalBarSeries
+                            <LineMarkSeries
                                 data={props.marketCap}
                                 color='#43dbd6A0'
-                                style={{ fill: 'black', overflow: 'hidden' }}
-                                onSeriesMouseOver={() => {
-                                    setMouseMarket(true)
-                                }}
-                                onSeriesMouseOut={() => {
-                                    setMouseMarket(false)
-                                }}
+                                // style={{ fill: 'none' }}
                                 onNearestXY={(value, index) => {
                                     formatDate(curDate, index.index);
                                     setCurrentMarket(convertNum(value.y))
-                                }} />
-                            <WeekText>{mouseMarket ? marketDay : '7d'}</WeekText>
-                        </XYPlot>
-                    }
-                </Bottom>
-            </Wrapper>
-            <Wrapper>
-                <Top>
-                    <Text>VOLUMES</Text>
-                    <Number>{`$${currentVolume}`}</Number>
-                </Top>
-                <Bottom>
-                    {
-                        props.volumeData &&
-                        <XYPlot
-                            height={100}
-                            width={228}
-                            style={{ position: 'relative' }}>
-                            <LineMarkSeries
-                                data={props.volumeData}
-                                color='#43dbd6A0'
-                                style={{ fill: 'none' }}
-                                onNearestXY={(value, index) => {
-                                    formatDate(curDate, index.index);
-                                    setCurrentVolume(convertNum(value.y))
                                 }} />
                             <LineMarkSeries
                                 data={props.volumeData}
@@ -161,13 +166,13 @@ const Graphs = (props) => {
                                 color='transparent'
                                 style={{ fill: 'none' }}
                                 onSeriesMouseOver={() => {
-                                    setMouseVolume(true)
+                                    setMouseMarket(true)
                                 }}
                                 onSeriesMouseOut={() => {
-                                    setMouseVolume(false)
+                                    setMouseMarket(false)
                                 }}
                             />
-                            <WeekText>{mouseVolume ? volumeDay : '7d'}</WeekText>
+                            <WeekText>{mouseMarket ? marketDay : '7d'}</WeekText>
                         </XYPlot>
                     }
                 </Bottom>

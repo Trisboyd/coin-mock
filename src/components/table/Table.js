@@ -23,17 +23,17 @@ const Table = (props) => {
                         )
                     })}
                 </Row>
-                {props.allData &&
-                    <Row>
-                        {props.allData.map((data, dataIndex) => {
-                            return (
-                                <TableCell
-                                    key={dataIndex} coin={data} />
-                            )
-                        })}
-                    </Row>
-                }
             </Head>
+            {props.allData &&
+                <Row>
+                    {props.allData.map((data, dataIndex) => {
+                        return (
+                            <TableCell
+                                key={dataIndex} coin={data} />
+                        )
+                    })}
+                </Row>
+            }
         </InfoTable>
     )
 }

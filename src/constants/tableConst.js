@@ -23,10 +23,10 @@ export const TableData = {
             name: 'All-time High'
         },
         {
-            name: '1h'
+            name: '1h change'
         },
         {
-            name: '24h'
+            name: '24h change'
         },
     ],
     coins: [
