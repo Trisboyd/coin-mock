@@ -24,7 +24,9 @@ React | Styled-Components | React-vis (for the graphs)
 ### Personal Use
 
 Clone
-`$ git clone https://https://github.com/Trisboyd/coin-mock.git`
+```
+$ git clone https://https://github.com/Trisboyd/coin-mock.git
+```
 
 Install
 ```
@@ -33,5 +35,7 @@ $ npm i
 ```
 
 Launch
-`$ npm run start`
+```
+$ npm run start
+```
 
