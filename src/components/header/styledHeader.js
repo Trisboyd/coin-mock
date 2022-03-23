@@ -144,9 +144,13 @@ export const Sign = styled.button`
     border-radius: 6px;
     color: ${props => props.$active ? 'black' : '#47c2be'};
     background: ${props => props.$active ? '#47c2be' : 'inherit'};
+    box-sizing: border-box;
 
     :hover {
-        opacity: 0.6;
+        text-decoration: ${props => props.$active ? 'none' : 'underline'};
+        background: inherit;
+        border: ${props => props.$active ? '1px solid #47c2be' : 'none'};
+        color: #47c2be;
     }
 `
 // ______________Popup for currency and frequency of update
