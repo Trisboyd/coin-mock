@@ -144,6 +144,10 @@ export const Sign = styled.button`
     border-radius: 6px;
     color: ${props => props.$active ? 'black' : '#47c2be'};
     background: ${props => props.$active ? '#47c2be' : 'inherit'};
+
+    :hover {
+        opacity: 0.6;
+    }
 `
 // ______________Popup for currency and frequency of update
 export const SelectPopup = styled.div`

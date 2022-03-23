@@ -156,7 +156,7 @@ const Main = () => {
 
     return (
         <MainSection>
-            {allData.length &&
+            {allData[0] &&
                 <Graphs
                     priceData={priceData}
                     marketCap={marketCap}
@@ -164,7 +164,7 @@ const Main = () => {
                 />
             }
             <MainDiv>
-                {allData.length &&
+                {allData[0] &&
                     <>
                         <Controls />
                         <Table

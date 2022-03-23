@@ -31,6 +31,7 @@ export const Number = styled(Text)`
 `
 export const Bottom = styled.div`
     position: relative;
+    cursor: pointer;
 `
 export const WeekText = styled(Text)`
     position: absolute;

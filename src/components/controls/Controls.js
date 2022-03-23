@@ -20,7 +20,8 @@ const Controls = () => {
                             color='rgb(157, 170, 191)' />
                     )
                 })}
-                <MainButton text={0}
+                <MainButton
+                    text={0}
                     color='rgb(157, 170, 191)' />
                 <MainButton
                     image={heart}

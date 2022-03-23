@@ -1,6 +1,6 @@
 import { Bottom, Currency, HeaderSection, Item, Link, Links, Nav, Option, OptionText, Register, Search, SearchImg, SearchInput, Section, Select, SelectPopup, SelectSearch, SelectSearchText, ShiftText, ShiftTheme, Sign, Title, Top, TopGroup } from "./styledHeader"
 import { HeaderData } from '../../constants/headerConst';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const {
     title,
@@ -26,6 +26,30 @@ const Header = () => {
         setOpenCurrency(!openCurrency);
     }
 
+    const closeMenus = () => {
+        setOpenFreq(false);
+        setOpenCurrency(false);
+    }
+
+    // __________________________ outside clicks close menus
+    const dropDownRef = useRef();
+
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+            if ((openFreq || openCurrency)
+                && dropDownRef.current
+                && !dropDownRef.current.contains(e.target)) {
+                closeMenus();
+            }
+        }
+
+        document.addEventListener("mousedown", checkIfClickedOutside)
+
+        return () => {
+            document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [openFreq, openCurrency])
+
 
 
     // ______________________________________________ Links
@@ -45,35 +69,39 @@ const Header = () => {
                                 {modes.dark}
                             </ShiftText>
                         </ShiftTheme>
-                        <ShiftTheme
-                            onClick={toggleFreq}>
-                            <ShiftText>
+                        <ShiftTheme>
+                            <ShiftText
+                                onClick={toggleFreq}>
                                 {frequency[0].time}
                             </ShiftText>
                             <SelectPopup open={openFreq}>
                                 <SelectSearch>
                                     <SelectSearchText>Update Frequency</SelectSearchText>
                                 </SelectSearch>
-                                {frequency.map((type) => {
+                                {frequency.map((type, typeIndex) => {
                                     return (
-                                        <Option>
+                                        <Option key={typeIndex}>
                                             <OptionText>{type.time}</OptionText>
                                         </Option>
                                     )
                                 })}
                             </SelectPopup>
                         </ShiftTheme>
-                        <Currency onClick={toggleCurrency}>
-                            <p>{currency[0].type}</p>
+                        <Currency
+                            ref={dropDownRef}>
+                            <p
+                                onClick={toggleCurrency}>
+                                {currency[0].type}
+                            </p>
                             <SelectPopup open={openCurrency}>
                                 <SelectSearch>
                                     <Search>
                                         <SearchInput placeholder='Search Currencies' />
                                     </Search>
                                 </SelectSearch>
-                                {currency.map((type) => {
+                                {currency.map((type, typeIndex) => {
                                     return (
-                                        <Option>
+                                        <Option key={typeIndex}>
                                             <OptionText>{type.type}</OptionText>
                                         </Option>
                                     )
@@ -90,9 +118,9 @@ const Header = () => {
                 <Bottom>
                     <Nav>
                         <Links>
-                            {links.map((link) => {
+                            {links.map((link, linkIndex) => {
                                 return (
-                                    <Item>
+                                    <Item key={linkIndex}>
                                         <Link
                                             onMouseEnter={() => setHover(true)}
                                             onMouseLeave={() => setHover(false)}
