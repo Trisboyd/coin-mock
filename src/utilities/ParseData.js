@@ -5,7 +5,6 @@ class ParseData {
     constructor(coinData, weekData, hourData) {
         this._coin = coinData;
         this._week = weekData;
-        this._hour = hourData;
         this._hourDiff = null;
         this.currentCoin = [];
     }
@@ -40,36 +39,41 @@ class ParseData {
         else return 'green';
     }
 
-    _24Volume = () => {
-        const length = this._week.total_volumes.length;
-        const volume = this._week.total_volumes[length - 1][1];
-        return this._convertNum(volume);
-    }
+    // _24Volume = () => {
+    //     const length = this._week.total_volumes.length;
+    //     const volume = this._week.total_volumes[length - 1][1];
+    //     return this._convertNum(volume);
+    // }
 
-    _hourChange = () => {
-        const length = this._hour.prices.length;
-        const hour1 = this._hour.prices[length - 2][1];
-        const hour2 = this._hour.prices[length - 1][1];
-        if (hour2 > hour1) {
-            let change = hour2 / hour1;
-            this._hourDiff = 'green';
-            return `${change.toFixed(2)}%`
-        }
-        else {
-            let change = hour1 / hour2;
-            this._hourDiff = 'red';
-            return `${change.toFixed(2)}%`
-        }
-    }
+    // _hourChange = () => {
+    //     const length = this._hour.prices.length;
+    //     const hour1 = this._hour.prices[length - 2][1];
+    //     const hour2 = this._hour.prices[length - 1][1];
+    //     if (hour2 > hour1) {
+    //         let change = hour2 / hour1;
+    //         this._hourDiff = 'green';
+    //         return `${change.toFixed(2)}%`
+    //     }
+    //     else {
+    //         let change = hour1 / hour2;
+    //         this._hourDiff = 'red';
+    //         return `${change.toFixed(2)}%`
+    //     }
+    // }
 
     parse = () => {
         this.currentCoin = [
-            { heart: heart },
+            {
+                name: 'rank',
+                value: this._coin.market_cap_rank,
+                align: true
+            },
             {
                 name: 'data',
                 symbol: this._coin.symbol.toUpperCase(),
                 word: this._coin.name,
-                image: this._coin.image
+                image: this._coin.image,
+                id: this._coin.id
             },
             {
                 name: 'price',
@@ -80,17 +84,8 @@ class ParseData {
                 value: `$${this._convertNum(this._coin.market_cap)}`
             },
             {
-                name: 'volume',
-                value: `$${this._24Volume()}`
-            },
-            {
                 name: 'ath',
                 value: `$${this._coin.ath}`
-            },
-            {
-                name: 'hour',
-                value: this._hourChange(),
-                negative: this._hourDiff
             },
             {
                 name: 'day',

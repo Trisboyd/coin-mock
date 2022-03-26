@@ -11,6 +11,10 @@ export const Head = styled.thead`
 `
 export const Row = styled.tr`
     width: 88.3%;
+    
+    :hover {
+        background: ${props => props.$head ? 'none' : 'rgba(52,62,86,0.6)'};
+    }
 `
 export const HeadData = styled.th`
     width: ${props => props.width};
@@ -20,35 +24,23 @@ export const HeadData = styled.th`
     border-bottom: 1px solid black; 
 
     &:first-of-type{
-        width: 4.87%;
+        width: 16%;
         text-align: left;
     }
     &:nth-of-type(2){
-        width: 10.29%;
+        width: 20%;
         text-align: left;
     }
     &:nth-of-type(3){
-        width: 9.2%;
+        width: 15%;
     }
     &:nth-of-type(4){
-        width: 8.89%;
+        width: 15%;
     }
     &:nth-of-type(5){
-        width: 9.16%;
+        width: 15%;
     }
     &:nth-of-type(6){
-        width: 10.29%;
-    }
-    &:nth-of-type(7){
-        width: 8.88%;
-    }
-    &:nth-of-type(8){
-        width: 6.73%;
-    }
-    &:nth-of-type(9){
-        width: 6.73%;
-    }
-    &:nth-of-type(10){
-        width: 13.28%;
+        width: 19%;
     }
 `

@@ -1,5 +1,8 @@
+import crypt from '../images/crypt.png';
+
 export const HeaderData = {
-    title: 'LIVE COIN WATCH',
+    title: 'Crypt(o) Watch',
+    image: crypt,
     modes: {
         dark: 'Dark',
         light: 'Light'

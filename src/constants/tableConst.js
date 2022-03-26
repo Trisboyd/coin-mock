@@ -3,7 +3,7 @@ import heart from '../images/heart.svg';
 export const TableData = {
     head: [
         {
-            name: '#'
+            name: 'Market Cap Rank'
         },
         {
             name: 'Coin'
@@ -17,13 +17,7 @@ export const TableData = {
 
         },
         {
-            name: 'Volume 24h'
-        },
-        {
             name: 'All-time High'
-        },
-        {
-            name: '1h change'
         },
         {
             name: '24h change'

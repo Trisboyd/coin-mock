@@ -1,9 +1,10 @@
-import { Bottom, Currency, HeaderSection, Item, Link, Links, Nav, Option, OptionText, Register, Search, SearchImg, SearchInput, Section, Select, SelectPopup, SelectSearch, SelectSearchText, ShiftText, ShiftTheme, Sign, Title, Top, TopGroup } from "./styledHeader"
+import { Bottom, Currency, HeaderSection, Image, Item, Link, Links, Nav, Option, OptionText, Register, Search, SearchImg, SearchInput, Section, Select, SelectPopup, SelectSearch, SelectSearchText, ShiftText, ShiftTheme, Sign, Title, Top, TopGroup } from "./styledHeader"
 import { HeaderData } from '../../constants/headerConst';
 import { useState, useRef, useEffect } from 'react';
 
 const {
     title,
+    image,
     modes,
     frequency,
     currency,
@@ -62,6 +63,7 @@ const Header = () => {
                 <Top>
                     <TopGroup>
                         <Title>{title}</Title>
+                        <Image src={image} />
                     </TopGroup>
                     <TopGroup>
                         <ShiftTheme>

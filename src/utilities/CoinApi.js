@@ -5,7 +5,7 @@ class Api {
 
     // retrieve market data for all coins
     getMarketData(currency = 'usd') {
-        return fetch(`${this._url}/coins/markets?vs_currency=${currency}&per_page=300`)
+        return fetch(`${this._url}/coins/markets?vs_currency=${currency}&per_page=30`)
             .then(response => {
                 return this._checkResponse(response)
             })

@@ -13,6 +13,10 @@ import {
 
 const TableCell = (props) => {
 
+    const handleCoinClick = () => {
+        props.handleCoinClick(props.coin)
+    };
+
     const SelectData = () => {
         if (props.coin.hasOwnProperty('heart')) {
             return (
@@ -26,7 +30,8 @@ const TableCell = (props) => {
         }
         else if (props.coin.hasOwnProperty('image')) {
             return (
-                <CellLink>
+                <CellLink
+                    onClick={handleCoinClick}>
                     <CellImage src={props.coin.image} alt={props.coin.symbol} />
                     <CellCoin>{props.coin.symbol}
                         <SmallText>{props.coin.word}</SmallText>
@@ -36,7 +41,8 @@ const TableCell = (props) => {
         }
         else return (
             <CellText
-                color={props.coin.negative}>
+                color={props.coin.negative}
+                align={props.coin.align}>
                 {props.coin.value}
             </CellText>
         )

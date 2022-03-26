@@ -19,7 +19,7 @@ export const Top = styled.div`
     align-items: center;
     display: flex;
     justify-content: space-between;
-    padding: 10px 0 16px;
+    padding: 8px 0 10px;
 `
 export const TopGroup = styled.div`
     display: flex;
@@ -31,6 +31,10 @@ export const Title = styled.h1`
     line-height: 1.2;
     color: white;
     text-align: left;
+`
+export const Image = styled.img`
+    height: 75px;
+    width: 75px;
 `
 export const ShiftTheme = styled.div`
     width: 57px;

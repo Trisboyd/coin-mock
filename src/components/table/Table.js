@@ -1,9 +1,6 @@
-import { useState, useEffect } from 'react';
 import { Head, HeadData, InfoTable, Row } from './styledTable';
 import { TableData } from '../../constants/tableConst';
 import TableCell from '../tablecell/TableCell';
-import coinApi from '../../utilities/CoinApi';
-import ParseData from '../../utilities/ParseData';
 
 const {
     head,
@@ -11,30 +8,44 @@ const {
 
 const Table = (props) => {
 
+    const handleCoinClick = (data) => {
+        props.handleCoinClick(data);
+    }
+
     return (
         <InfoTable>
             <Head>
-                <Row>
+                <Row $head={true}>
                     {head.map((data, dataIndex) => {
                         return (
-                            <HeadData key={dataIndex}>
+                            <HeadData
+                                key={dataIndex}>
                                 {data.name}
                             </HeadData>
                         )
                     })}
                 </Row>
             </Head>
-            {props.allData &&
-                <Row>
-                    {props.allData.map((data, dataIndex) => {
+            <tbody>
+                {props.allData &&
+                    props.allData.map((coin, coinsIndex) => {
                         return (
-                            <TableCell
-                                key={dataIndex} coin={data} />
+                            <Row
+                                key={coinsIndex}>
+                                {coin.map((data, dataIndex) => {
+                                    return (
+                                        <TableCell
+                                            key={dataIndex}
+                                            handleCoinClick={handleCoinClick}
+                                            coin={data} />
+                                    )
+                                })}
+                            </Row>
                         )
-                    })}
-                </Row>
-            }
-        </InfoTable>
+                    })
+                }
+            </tbody>
+        </InfoTable >
     )
 }
 
