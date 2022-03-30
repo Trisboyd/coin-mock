@@ -21,7 +21,15 @@ export const CellText = styled.p`
     font-size: 16px;
     font-weight: 400;
     vertical-align: center;
-    text-align: ${props => props.align ? 'left' : 'right'}
+    text-align: ${props => props.align ? 'left' : 'right'};
+
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
+
+    @media (max-width: 525px) {
+        font-size: 10px;
+    }
 `
 export const CellLink = styled.div`
     display: flex;
@@ -30,9 +38,13 @@ export const CellLink = styled.div`
 `
 export const CellCoin = styled.div`
     display: flex;
-    // flex-direction: column;
     color: white;
     margin-left: 10px;
+
+    @media (max-width: 768px) {
+        align-items: center;
+        font-size: 12px;
+    }
 `
 export const SmallText = styled.p`
     font-size: 11px;
@@ -42,6 +54,10 @@ export const SmallText = styled.p`
     color: yellow;
     opacity: 0.8;
     align-self: center;
+
+    @media (max-width: 768px) {
+        font-size: 8px;
+    }
 `
 export const CellImage = styled.img`
     width: 22px;

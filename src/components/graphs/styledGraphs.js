@@ -7,7 +7,6 @@ export const Overlay = styled.section`
     bottom: 0;
     left: 0;
     right: 0;
-    // justify-content: center;
     align-items: center;
     z-index: 1;
     background-color: rgba(0, 0, 0, 0.5);
@@ -22,6 +21,10 @@ export const Exit = styled.img`
     top: -35px;
     right: -35px;
     cursor: pointer;
+
+    @media (max-width: 525px) {
+        right: 0;
+    }
 `
 export const Section = styled.div`
     width: 50%;
@@ -35,6 +38,14 @@ export const Section = styled.div`
     justify-content: space-between;
     border-radius: 6px;
     padding: 15px;
+
+    @media (max-width: 1024px) {
+        width: 70%;
+    }
+
+    @media (max-width: 525px) {
+        width: 100%;
+    }
 `
 export const GraphsWrap = styled.div`
     display: flex;

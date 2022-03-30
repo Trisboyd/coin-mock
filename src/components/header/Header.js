@@ -78,29 +78,6 @@ const Header = () => {
                         <Image src={image} />
                     </TopGroup>
                     <TopGroup>
-                        {/* <ShiftTheme>
-                            <ShiftText>
-                                {modes.dark}
-                            </ShiftText>
-                        </ShiftTheme> */}
-                        {/* <ShiftTheme>
-                            <ShiftText
-                                onClick={toggleFreq}>
-                                {frequency[0].time}
-                            </ShiftText>
-                            <SelectPopup open={openFreq}>
-                                <SelectSearch>
-                                    <SelectSearchText>Update Frequency</SelectSearchText>
-                                </SelectSearch>
-                                {frequency.map((type, typeIndex) => {
-                                    return (
-                                        <Option key={typeIndex}>
-                                            <OptionText>{type.time}</OptionText>
-                                        </Option>
-                                    )
-                                })}
-                            </SelectPopup>
-                        </ShiftTheme> */}
                         <Currency
                             ref={dropDownRef}>
                             <p

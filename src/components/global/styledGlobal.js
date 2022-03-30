@@ -16,7 +16,6 @@ export const GlobalStyle = createGlobalStyle`
           sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        // background: rgb(23, 27, 38);
         background-image: url(${crypt});
         background-size: contain;
         max-width: 1440px;

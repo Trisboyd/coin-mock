@@ -5,6 +5,10 @@ export const MainSection = styled.section`
     display: flex;
     flex-direction: column;
     margin: auto;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `
 
 export const MainDiv = styled.div`
@@ -15,5 +19,5 @@ export const MainDiv = styled.div`
     flex-direction: column;
     margin: auto;
     border-radius: 6px;
-    padding: 0 14px;
+    // padding: 0 14px;
 `

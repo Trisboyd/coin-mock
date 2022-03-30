@@ -9,6 +9,10 @@ export const HeaderSection = styled.header`
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `
 export const Top = styled.div`
     width: 100%;
@@ -140,6 +144,10 @@ export const Item = styled.li`
 export const Register = styled.div`
     display: flex;
     align-items: center;
+
+    @media (max-width: 525px) {
+        display: none;
+    }
 `
 export const Sign = styled.button`
     font-size: 14px;

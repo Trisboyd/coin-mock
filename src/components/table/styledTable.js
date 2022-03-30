@@ -43,4 +43,8 @@ export const HeadData = styled.th`
     &:nth-of-type(6){
         width: 17%;
     }
+
+    @media (max-width: 768px) {
+        font-size: 10px;
+    }
 `

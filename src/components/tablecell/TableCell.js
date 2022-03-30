@@ -21,7 +21,6 @@ const TableCell = (props) => {
         if (props.coin.hasOwnProperty('heart')) {
             return (
                 <Liked>
-                    <Heart src={heart} />
                     <SmallText>
                         {props.number}
                     </SmallText>
