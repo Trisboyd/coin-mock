@@ -25,16 +25,13 @@ export const HeaderData = {
     ],
     links: [
         {
-            name: 'Coins',
+            name: 'Features (coming soon) →',
             left: true
         },
-        { name: 'Portfolio' },
-        { name: 'Overview' },
-        { name: 'Trending' },
-        { name: 'Exchanges' },
-        { name: 'Widgets' },
+        {
+            name: 'Coins'
+        },
         { name: 'Compare' },
-        { name: 'API' },
         { name: 'Chat' }
     ]
 }

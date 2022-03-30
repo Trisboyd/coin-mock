@@ -1,5 +1,3 @@
-import heart from '../images/heart.svg';
-
 class ParseData {
 
     constructor(coinData, weekData, hourData) {

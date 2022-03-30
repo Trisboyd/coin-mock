@@ -37,7 +37,8 @@ const Table = (props) => {
                                         <TableCell
                                             key={dataIndex}
                                             handleCoinClick={handleCoinClick}
-                                            coin={data} />
+                                            coin={data}
+                                            data={coin} />
                                     )
                                 })}
                             </Row>

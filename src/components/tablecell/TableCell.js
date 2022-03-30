@@ -14,7 +14,7 @@ import {
 const TableCell = (props) => {
 
     const handleCoinClick = () => {
-        props.handleCoinClick(props.coin)
+        props.handleCoinClick(props.data)
     };
 
     const SelectData = () => {

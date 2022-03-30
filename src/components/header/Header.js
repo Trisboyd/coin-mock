@@ -13,6 +13,18 @@ const {
 
 const Header = () => {
 
+    // ______________________________________________Links
+
+    const [hovered, setHovered] = useState(false);
+
+    const onHover = () => {
+        setHovered(true);
+    }
+
+    const onLeave = () => {
+        setHovered(false);
+    }
+
     // _______________________________________________Popups
 
     const [openFreq, setOpenFreq] = useState(false);
@@ -66,12 +78,12 @@ const Header = () => {
                         <Image src={image} />
                     </TopGroup>
                     <TopGroup>
-                        <ShiftTheme>
+                        {/* <ShiftTheme>
                             <ShiftText>
                                 {modes.dark}
                             </ShiftText>
-                        </ShiftTheme>
-                        <ShiftTheme>
+                        </ShiftTheme> */}
+                        {/* <ShiftTheme>
                             <ShiftText
                                 onClick={toggleFreq}>
                                 {frequency[0].time}
@@ -88,7 +100,7 @@ const Header = () => {
                                     )
                                 })}
                             </SelectPopup>
-                        </ShiftTheme>
+                        </ShiftTheme> */}
                         <Currency
                             ref={dropDownRef}>
                             <p
@@ -97,9 +109,9 @@ const Header = () => {
                             </p>
                             <SelectPopup open={openCurrency}>
                                 <SelectSearch>
-                                    <Search>
+                                    {/* <Search>
                                         <SearchInput placeholder='Search Currencies' />
-                                    </Search>
+                                    </Search> */}
                                 </SelectSearch>
                                 {currency.map((type, typeIndex) => {
                                     return (
@@ -110,11 +122,11 @@ const Header = () => {
                                 })}
                             </SelectPopup>
                         </Currency>
-                        <Search>
+                        {/* <Search>
                             <SearchInput
                                 placeholder='Search...'>
                             </SearchInput>
-                        </Search>
+                        </Search> */}
                     </TopGroup>
                 </Top>
                 <Bottom>

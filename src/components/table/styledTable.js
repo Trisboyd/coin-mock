@@ -41,6 +41,6 @@ export const HeadData = styled.th`
         width: 15%;
     }
     &:nth-of-type(6){
-        width: 19%;
+        width: 17%;
     }
 `

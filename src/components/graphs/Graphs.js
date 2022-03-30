@@ -1,71 +1,35 @@
 import {
-    XYPlot,
-    VerticalBarSeries,
-    LineMarkSeries
-}
-    from 'react-vis';
-import { useState } from 'react';
+    LineChart,
+    Line,
+    BarChart,
+    Bar,
+    Tooltip,
+    XAxis
+} from 'recharts';
+import exit from '../../images/exit.svg';
 import {
     Bottom,
     Number,
     Section,
     Text,
     Top,
-    WeekText,
     Wrapper,
-    Overlay
+    Overlay,
+    GraphsWrap,
+    Title,
+    Exit,
+    DataRow,
+    Label,
+    Data,
+    DataChange,
+    GraphWrap,
+    Div,
+    VolumeNum
 }
     from './styledGraphs';
+// import { HorizontalGridLines, VerticalGridLines, XAxis, YAxis } from 'react-vis/dist';
 
 const Graphs = (props) => {
-
-    // _______________________________________day of data being viewed
-    const [priceDay, setPriceDay] = useState('');
-
-    const [marketDay, setMarketDay] = useState('');
-
-    const [volumeDay, setVolumeDay] = useState('');
-
-    // _________________________________________ whether graph is being viewed or not
-    const [mousePrice, setMousePrice] = useState(false);
-
-    const [mouseMarket, setMouseMarket] = useState(false);
-
-    const [mouseVolume, setMouseVolume] = useState(false);
-
-    // _________________________________________ price of section of graph being viewed
-    const [currentPrice, setCurrentPrice] = useState('');
-
-    const [currentMarket, setCurrentMarket] = useState('');
-
-    const [currentVolume, setCurrentVolume] = useState('');
-
-    // ________________________________________current date
-    const curDate = new Date();
-
-    //  _______________________ date object for graph dates
-    const dateObject = {
-        7: 0,
-        6: 1,
-        5: 2,
-        4: 3,
-        3: 4,
-        2: 5,
-        1: 6,
-        0: 7
-    }
-
-    // ________________________________________format date to be read by newsApi
-    const formatDate = (date, index) => {
-        const newDate = date.getDate() - dateObject[index];
-        date.setDate(newDate);
-        const day = date.getDate();
-        const year = date.getFullYear();
-        const month = date.getMonth() + 1;
-        setPriceDay(`${month}-${day}-${year}`)
-        setMarketDay(`${month}-${day}-${year}`)
-        setVolumeDay(`${month}-${day}-${year}`)
-    }
 
     const convertNum = (num) => {
         if (num > 1000000000) {
@@ -77,79 +41,95 @@ const Graphs = (props) => {
         else return `$${num}`;
     }
 
+    const toolPriceInfo = (tooltipProps) => {
+        if (tooltipProps.payload[0]) {
+            return (
+                <Div>
+                    <Number>{tooltipProps.payload[0].payload.day}</Number>
+                    <Number>{convertNum(tooltipProps.payload[0].payload.price)}</Number>
+                </Div>
+            )
+        }
+        else return null
+    }
+
+    const toolVolumeInfo = (tooltipProps) => {
+        if (tooltipProps.payload[0]) {
+            return (
+                <Div>
+                    <VolumeNum>{tooltipProps.payload[0].payload.day}</VolumeNum>
+                    <VolumeNum>{convertNum(tooltipProps.payload[0].payload.volume)}</VolumeNum>
+                </Div>
+            )
+        }
+        else return null
+    }
+
     return (
         <Overlay open={props.open}>
             <Section>
-                <Wrapper>
-                    <Top>
-                        <Text>Prices</Text>
-                        <Number>{`$${currentPrice}`}</Number>
-                    </Top>
-                    <Bottom>
-                        {props.priceData &&
-                            <XYPlot
-                                height={100}
-                                width={228}
-                                style={{ position: 'relative' }}>
-                                <LineMarkSeries
-                                    data={props.priceData}
-                                    color='#43dbd6A0'
-                                    // style={{ fill: 'none' }}
-                                    onNearestXY={(value, index) => {
-                                        formatDate(curDate, index.index);
-                                        setCurrentPrice(value.y)
-                                    }} />
-                                <LineMarkSeries
-                                    data={props.priceData}
-                                    strokeWidth={50}
-                                    stroke='transparent'
-                                    color='transparent'
-                                    style={{ fill: 'none' }}
-                                    onSeriesMouseOver={() => {
-                                        setMousePrice(true)
-                                    }}
-                                    onSeriesMouseOut={() => {
-                                        setMousePrice(false)
-                                    }}
-                                />
-                                <WeekText>
-                                    {mousePrice ? priceDay : '7d'}
-                                </WeekText>
-                            </XYPlot>
-                        }
-                    </Bottom>
-                </Wrapper>
-                <Wrapper>
-                    <Top>
-                        <Text>DAILY VOLUMES</Text>
-                        <Number>{`$${currentVolume}`}</Number>
-                    </Top>
-                    <Bottom>
-                        {
-                            props.volumeData &&
-                            <XYPlot
-                                height={100}
-                                width={228}
-                                style={{ position: 'relative' }}>
-                                <VerticalBarSeries
-                                    data={props.volumeData}
-                                    color='#43dbd6A0'
-                                    style={{ fill: 'black', overflow: 'hidden' }}
-                                    onSeriesMouseOver={() => {
-                                        setMouseVolume(true)
-                                    }}
-                                    onSeriesMouseOut={() => {
-                                        setMouseVolume(false)
-                                    }}
-                                    onNearestXY={(value, index) => {
-                                        formatDate(curDate, index.index);
-                                        setCurrentVolume(convertNum(value.y))
-                                    }} />
-                                <WeekText>{mouseVolume ? volumeDay : '7d'}</WeekText>
-                            </XYPlot>
-                        }
-                    </Bottom>
-                </Wrapper>
+                <Exit
+                    src={exit}
+                    onClick={props.closeGraphs} />
+                <GraphsWrap>
+                    <Wrapper>
+                        <Top>
+                            <Text>PRICES</Text>
+                        </Top>
+                        <Bottom>
+                            <GraphWrap>
+                                {props.priceData &&
+                                    <LineChart width={228} height={150} data={props.priceData}>
+                                        <XAxis dataKey="day" hide={true} />
+                                        <Line type="monotone" dataKey="price" stroke="#8884d8" />
+                                        <Tooltip content={toolPriceInfo} />
+                                    </LineChart>}
+                            </GraphWrap>
+                        </Bottom>
+                    </Wrapper>
+                    <Wrapper>
+                        <Top>
+                            <Text>DAILY VOLUMES</Text>
+                        </Top>
+                        <Bottom>
+                            <GraphWrap>
+                                {props.volumeData &&
+                                    <BarChart
+                                        width={228}
+                                        height={150}
+                                        data={props.volumeData}
+                                    >
+                                        {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                                        <XAxis dataKey="day" hide={true} />
+                                        {/* <YAxis /> */}
+                                        <Tooltip content={toolVolumeInfo} />
+                                        <Bar dataKey="volume" fill="#8884d8" />
+                                    </BarChart>
+                                }
+                            </GraphWrap>
+                        </Bottom>
+                    </Wrapper>
+                </GraphsWrap>
+                <Title>{props.data.name}</Title>
+                <DataRow>
+                    <Label>Price</Label>
+                    <Data>{props.data.price}</Data>
+                </DataRow>
+                <DataRow>
+                    <Label>Market Cap</Label>
+                    <Data>{props.data.market}</Data>
+                </DataRow>
+                <DataRow>
+                    <Label>All Time High</Label>
+                    <Data>{props.data.high}</Data>
+                </DataRow>
+                <DataRow>
+                    <Label>24h change</Label>
+                    <DataChange
+                        color={props.data.color}>
+                        {props.data.change}
+                    </DataChange>
+                </DataRow>
             </Section>
         </Overlay>
     )

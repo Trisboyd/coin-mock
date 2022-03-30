@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
       }
 
       body {
-        margin: 0;
+        margin: auto;
         font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Arial', 'Segoe UI', 'Oxygen',
           'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
           sans-serif;
@@ -19,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
         // background: rgb(23, 27, 38);
         background-image: url(${crypt});
         background-size: contain;
+        max-width: 1440px;
       }
 
       h1, h2, h3, h4, h5, h6, p {

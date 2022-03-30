@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const Section = styled.section`
-    background: #293143;
-    width: 100vw;
+    background: #170D21;
 `
 export const HeaderSection = styled.header`
     width: 74.24%; // 1069 / 1440
@@ -15,7 +14,7 @@ export const Top = styled.div`
     width: 100%;
     height: 72px;
     display: flex;
-    border-bottom: 1px solid #3d4863;
+    border-bottom: 1px solid #604B77;
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -47,7 +46,7 @@ export const ShiftTheme = styled.div`
     border-radius: 6px;
 
     :hover {
-        background: #343e56;
+        background: #4F3456;
     }
 `
 export const ShiftImage = styled.img`
@@ -63,7 +62,7 @@ export const ShiftText = styled.p`
 export const Currency = styled.div`
     width: 94.575px;
     height: 40px;
-    background: #343e56;
+    //background: #343e56; //original
     color: white;
     border: none;
     border-radius: 6px;
@@ -73,6 +72,10 @@ export const Currency = styled.div`
     position: relative;
     margin: 0 10px;
     cursor: pointer;
+
+    :hover {
+        background: #4F3456;
+    }
 `
 export const Search = styled.div`
     border-radius: 6px;
@@ -112,16 +115,6 @@ export const Nav = styled.nav`
 export const Links = styled.ul`
     display: flex;
 `
-export const Item = styled.li`
-    height: 66.2px;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-
-    :hover {
-        border-bottom: 3px solid #47c2be;
-    }
-`
 export const Link = styled.a`
     line-height: 1.2;
     font-weight: 700;
@@ -129,10 +122,19 @@ export const Link = styled.a`
     padding: 0 18px;
     padding-left: ${props => props.first ? 0 : '18px'};
     color: white;
-    border-right: 1px solid #3d4863;
+    border-right: 1px solid #604B77;
+`
+export const Item = styled.li`
+    height: 66.2px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
 
+    :hover ${Link} {
+        color: #B700FF;
+    }
     :hover {
-        color: #47c2be;
+        border-bottom: 2px solid #B700FF;
     }
 `
 export const Register = styled.div`
@@ -146,15 +148,15 @@ export const Sign = styled.button`
     padding: 7px 10px 8px;
     border: none;
     border-radius: 6px;
-    color: ${props => props.$active ? 'black' : '#47c2be'};
-    background: ${props => props.$active ? '#47c2be' : 'inherit'};
+    color: ${props => props.$active ? 'black' : '#B700FF'};
+    background: ${props => props.$active ? '#B700FF' : 'inherit'};
     box-sizing: border-box;
 
     :hover {
         text-decoration: ${props => props.$active ? 'none' : 'underline'};
         background: inherit;
-        border: ${props => props.$active ? '1px solid #47c2be' : 'none'};
-        color: #47c2be;
+        border: ${props => props.$active ? '1px solid #B700FF' : 'none'};
+        color: #B700FF;
     }
 `
 // ______________Popup for currency and frequency of update
@@ -167,7 +169,7 @@ export const SelectPopup = styled.div`
     left: 0;
     display: flex;
     flex-direction: column;
-    background: #343e56;
+    background: #4F3456;
     border-radius: 6px;
     visibility: ${props => props.open ? 'visible' : 'hidden'};
 `
