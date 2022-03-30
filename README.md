@@ -1,25 +1,24 @@
-# COIN WATCH MOCK UP
+# Crypt(o) Watch
+
+(it's supposed to be a fun play on the word crypt, feel free to roll your eyes)
 
 View this site live at [Coin Watch Mock](https://trisboyd.github.io/coin-mock/).
 
 ## About
 
-Based on [LiveCoinWatch](https://www.livecoinwatch.com/) this site allows users to gain
-up to date information on crypto currencies of their choosing by accessing the coingecko API
+This site allows users to gain up to date information on crypto currencies by means of the CoinGecko API
 
 ## Tech
 
-React | Styled-Components | React-vis (for the graphs)
+React | Styled-Components | Recharts (for the graphs)
 
-## Updates
-
->Access to multiple coins at once
+## Updates (coming soon)
 
 >Shift data based on currency
 
->Light mode
+>Compare coins
 
->Most of the control features are currently inoperable, but could render new layouts and organization
+>User login
 
 ### Personal Use
 
