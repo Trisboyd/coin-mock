@@ -20,7 +20,7 @@ export const HeadData = styled.th`
     width: ${props => props.width};
     color: white;
     font-size: 14px;
-    text-align: right;
+    text-align: ${props => props.left ? 'left' : 'right'};
     border-bottom: 1px solid black; 
 
     &:first-of-type{
@@ -34,6 +34,12 @@ export const HeadData = styled.th`
 
     @media (max-width: 525px) {
         &:nth-of-type(5n) {
+            display: none;
+        }
+    }
+
+    @media (max-width: 425px) {
+        &:nth-of-type(4n) {
             display: none;
         }
     }

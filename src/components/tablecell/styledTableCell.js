@@ -24,6 +24,12 @@ export const Cell = styled.td`
             display: none;
         }
     }
+
+    @media (max-width: 425px) {
+        &:nth-of-type(4n) {
+            display: none;
+        }
+    }
 `
 export const CellText = styled.p`
     color: ${(props) => handleColor(props.color)}};

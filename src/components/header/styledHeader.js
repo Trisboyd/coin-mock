@@ -34,6 +34,10 @@ export const Title = styled.h1`
     line-height: 1.2;
     color: white;
     text-align: left;
+
+    @media (max-width: 525px) {
+        font-size: 24px;
+    }
 `
 export const Image = styled.img`
     height: 75px;
@@ -126,6 +130,10 @@ export const Link = styled.a`
     padding-left: ${props => props.first ? 0 : '18px'};
     color: white;
     border-right: 1px solid #604B77;
+
+    @media (max-width: 525px) {
+        font-size: 12px;
+    }
 `
 export const Item = styled.li`
     height: 66.2px;

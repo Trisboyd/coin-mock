@@ -6,7 +6,8 @@ export const TableData = {
             name: 'Market Cap Rank'
         },
         {
-            name: 'Coin'
+            name: 'Coin',
+            left: true
         },
         {
             name: 'Price'

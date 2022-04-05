@@ -19,7 +19,8 @@ const Table = (props) => {
                     {head.map((data, dataIndex) => {
                         return (
                             <HeadData
-                                key={dataIndex}>
+                                key={dataIndex}
+                                left={data.left}>
                                 {data.name}
                             </HeadData>
                         )
