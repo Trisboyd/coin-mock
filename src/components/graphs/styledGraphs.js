@@ -46,11 +46,20 @@ export const Section = styled.div`
     @media (max-width: 525px) {
         width: 100%;
     }
+
+    @media (max-width: 425px) {
+        height: 80vh;
+    }
 `
 export const GraphsWrap = styled.div`
     display: flex;
     justify-content: space-around;
     margin-bottom: 15px;
+
+    @media (max-width: 425px) {
+        flex-direction: column;
+        margin: auto;
+    }
 `
 export const Wrapper = styled.div`
     width: 250px;
@@ -58,6 +67,17 @@ export const Wrapper = styled.div`
     position: relative;
     background: #170D21;
     border-radius: 6px;
+
+    @media (max-width: 768px) {
+        width: 175px;
+        height: 150px;
+    }
+
+    @media (max-width: 425px) {
+        width: 250px;
+        height: 200px;
+        margin-bottom: 10px;
+    }
 `
 export const GraphWrap = styled.div`
     width: 100%;
@@ -91,6 +111,9 @@ export const VolumeNum = styled(Number)`
 export const Bottom = styled.div`
     position: relative;
     cursor: pointer;
+    width: 90%;
+    height: 80%;
+    margin: auto;
 `
 export const Title = styled.h3`
     font-size: 40px;

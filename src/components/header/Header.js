@@ -86,9 +86,6 @@ const Header = () => {
                             </p>
                             <SelectPopup open={openCurrency}>
                                 <SelectSearch>
-                                    {/* <Search>
-                                        <SearchInput placeholder='Search Currencies' />
-                                    </Search> */}
                                 </SelectSearch>
                                 {currency.map((type, typeIndex) => {
                                     return (
@@ -99,11 +96,6 @@ const Header = () => {
                                 })}
                             </SelectPopup>
                         </Currency>
-                        {/* <Search>
-                            <SearchInput
-                                placeholder='Search...'>
-                            </SearchInput>
-                        </Search> */}
                     </TopGroup>
                 </Top>
                 <Bottom>

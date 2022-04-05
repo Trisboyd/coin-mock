@@ -15,6 +15,15 @@ export const Cell = styled.td`
     width: ${props => props.width};
     height: 49.1px;
     border-bottom: 0.5px solid black;
+
+    @media (max-width: 525px) {
+        &:first-of-type {
+            width: 20px;
+        }
+        &:nth-of-type(5n) {
+            display: none;
+        }
+    }
 `
 export const CellText = styled.p`
     color: ${(props) => handleColor(props.color)}};

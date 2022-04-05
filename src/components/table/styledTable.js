@@ -24,27 +24,17 @@ export const HeadData = styled.th`
     border-bottom: 1px solid black; 
 
     &:first-of-type{
-        width: 16%;
+        width: 12%;
         text-align: left;
-    }
-    &:nth-of-type(2){
-        width: 20%;
-        text-align: left;
-    }
-    &:nth-of-type(3){
-        width: 15%;
-    }
-    &:nth-of-type(4){
-        width: 15%;
-    }
-    &:nth-of-type(5){
-        width: 15%;
-    }
-    &:nth-of-type(6){
-        width: 17%;
     }
 
     @media (max-width: 768px) {
         font-size: 10px;
+    }
+
+    @media (max-width: 525px) {
+        &:nth-of-type(5n) {
+            display: none;
+        }
     }
 `

@@ -4,7 +4,8 @@ import {
     BarChart,
     Bar,
     Tooltip,
-    XAxis
+    XAxis,
+    ResponsiveContainer
 } from 'recharts';
 import exit from '../../images/exit.svg';
 import {
@@ -79,11 +80,13 @@ const Graphs = (props) => {
                         <Bottom>
                             <GraphWrap>
                                 {props.priceData &&
-                                    <LineChart width={228} height={150} data={props.priceData}>
-                                        <XAxis dataKey="day" hide={true} />
-                                        <Line type="monotone" dataKey="price" stroke="#8884d8" />
-                                        <Tooltip content={toolPriceInfo} />
-                                    </LineChart>}
+                                    <ResponsiveContainer>
+                                        <LineChart width={228} height={150} data={props.priceData}>
+                                            <XAxis dataKey="day" hide={true} />
+                                            <Line type="monotone" dataKey="price" stroke="#8884d8" />
+                                            <Tooltip content={toolPriceInfo} />
+                                        </LineChart>
+                                    </ResponsiveContainer>}
                             </GraphWrap>
                         </Bottom>
                     </Wrapper>
@@ -94,17 +97,17 @@ const Graphs = (props) => {
                         <Bottom>
                             <GraphWrap>
                                 {props.volumeData &&
-                                    <BarChart
-                                        width={228}
-                                        height={150}
-                                        data={props.volumeData}
-                                    >
-                                        {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                                        <XAxis dataKey="day" hide={true} />
-                                        {/* <YAxis /> */}
-                                        <Tooltip content={toolVolumeInfo} />
-                                        <Bar dataKey="volume" fill="#8884d8" />
-                                    </BarChart>
+                                    <ResponsiveContainer>
+                                        <BarChart
+                                            data={props.volumeData}
+                                        >
+                                            {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                                            <XAxis dataKey="day" hide={true} />
+                                            {/* <YAxis /> */}
+                                            <Tooltip content={toolVolumeInfo} />
+                                            <Bar dataKey="volume" fill="#8884d8" />
+                                        </BarChart>
+                                    </ResponsiveContainer>
                                 }
                             </GraphWrap>
                         </Bottom>

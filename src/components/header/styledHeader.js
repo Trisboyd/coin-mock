@@ -66,7 +66,6 @@ export const ShiftText = styled.p`
 export const Currency = styled.div`
     width: 94.575px;
     height: 40px;
-    //background: #343e56; //original
     color: white;
     border: none;
     border-radius: 6px;
@@ -174,12 +173,16 @@ export const SelectPopup = styled.div`
     z-index: 5;
     position: absolute;
     top: 110%;
-    left: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
     background: #4F3456;
     border-radius: 6px;
     visibility: ${props => props.open ? 'visible' : 'hidden'};
+
+    @media (max-width: 768px) {
+        width: 150px;
+    }
 `
 export const SelectSearch = styled.div`
     padding: 10px 15px 9px;
@@ -191,7 +194,7 @@ export const SelectSearchText = styled.p`
 `
 export const Option = styled.button`
     height: 31px;
-    width: 208px;
+    width: 100%;
     border: none;
     padding: 7px 15px 8px;
     background: inherit;

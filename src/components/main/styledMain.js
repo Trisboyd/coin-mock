@@ -17,7 +17,8 @@ export const MainDiv = styled.div`
     background: rgba(41, 49, 67, 0.45);
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
     margin: auto;
     border-radius: 6px;
-    // padding: 0 14px;
+    padding: 0 14px;
 `
