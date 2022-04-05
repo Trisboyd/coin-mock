@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/coin-mock/static/css/main.d31f7457.css",
-    "main.js": "/coin-mock/static/js/main.5439e3a7.js",
+    "main.js": "/coin-mock/static/js/main.b53e6e31.js",
     "static/js/787.7b378b80.chunk.js": "/coin-mock/static/js/787.7b378b80.chunk.js",
     "static/media/cryptBack.jpg": "/coin-mock/static/media/cryptBack.ef4725eebed0ef1d8c08.jpg",
     "static/media/crypt.png": "/coin-mock/static/media/crypt.fce719c43d1227adc082.png",
@@ -9,11 +9,11 @@
     "index.html": "/coin-mock/index.html",
     "static/media/exit.svg": "/coin-mock/static/media/exit.e56b7bafd95e82e53bd071d5e27b6d5a.svg",
     "main.d31f7457.css.map": "/coin-mock/static/css/main.d31f7457.css.map",
-    "main.5439e3a7.js.map": "/coin-mock/static/js/main.5439e3a7.js.map",
+    "main.b53e6e31.js.map": "/coin-mock/static/js/main.b53e6e31.js.map",
     "787.7b378b80.chunk.js.map": "/coin-mock/static/js/787.7b378b80.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d31f7457.css",
-    "static/js/main.5439e3a7.js"
+    "static/js/main.b53e6e31.js"
   ]
 }
