@@ -1,16 +1,15 @@
 class ParseData {
 
-    constructor(coinData, weekData, hourData) {
+    constructor(coinData, currency) {
         this._coin = coinData;
-        this._week = weekData;
+        this._currency = currency;
         this._hourDiff = null;
         this.currentCoin = [];
     }
 
     print = () => {
         console.log(this._coin);
-        console.log(this._week);
-        console.log(this._hour);
+        console.log(this._currency);
     }
 
     _convertNum = (num) => {
@@ -37,28 +36,6 @@ class ParseData {
         else return 'green';
     }
 
-    // _24Volume = () => {
-    //     const length = this._week.total_volumes.length;
-    //     const volume = this._week.total_volumes[length - 1][1];
-    //     return this._convertNum(volume);
-    // }
-
-    // _hourChange = () => {
-    //     const length = this._hour.prices.length;
-    //     const hour1 = this._hour.prices[length - 2][1];
-    //     const hour2 = this._hour.prices[length - 1][1];
-    //     if (hour2 > hour1) {
-    //         let change = hour2 / hour1;
-    //         this._hourDiff = 'green';
-    //         return `${change.toFixed(2)}%`
-    //     }
-    //     else {
-    //         let change = hour1 / hour2;
-    //         this._hourDiff = 'red';
-    //         return `${change.toFixed(2)}%`
-    //     }
-    // }
-
     parse = () => {
         this.currentCoin = [
             {
@@ -75,15 +52,15 @@ class ParseData {
             },
             {
                 name: 'price',
-                value: `$${this._coin.current_price}`
+                value: `${this._currency.symbol}${this._coin.current_price}`
             },
             {
                 name: 'market',
-                value: `$${this._convertNum(this._coin.market_cap)}`
+                value: `${this._currency.symbol}${this._convertNum(this._coin.market_cap)}`
             },
             {
                 name: 'ath',
-                value: `$${this._coin.ath}`
+                value: `${this._currency.symbol}${this._coin.ath}`
             },
             {
                 name: 'day',

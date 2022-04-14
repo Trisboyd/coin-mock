@@ -14,14 +14,34 @@ export const HeaderData = {
         { time: '60s' }
     ],
     currency: [
-        { type: 'USD ($)' },
-        { type: 'EUR' },
-        { type: 'GBP' },
-        { type: 'AUD' },
-        { type: 'CAD' },
-        { type: 'BTC' },
-        { type: 'ETH' },
-        { type: 'DOGE' }
+        {
+            name: 'USD',
+            symbol: '$'
+        },
+        {
+            name: 'EUR',
+            symbol: '€'
+        },
+        {
+            name: 'GBP',
+            symbol: '£'
+        },
+        {
+            name: 'AUD',
+            symbol: 'A$'
+        },
+        {
+            name: 'CAD',
+            symbol: 'C$'
+        },
+        // {
+        //     name: 'BTC',
+        //     symbol: 'BTC'
+        // },
+        // {
+        //     name: 'ETH',
+        //     symbol: 'ETH'
+        // }
     ],
     links: [
         {

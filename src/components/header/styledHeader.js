@@ -208,6 +208,10 @@ export const Option = styled.button`
     background: inherit;
     cursor: pointer;
 
+    :hover{
+        background: #170D21;
+    }
+
     &:last-of-type {
         border-radius: 0 0 6px 6px;
     }
