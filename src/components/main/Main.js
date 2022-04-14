@@ -16,7 +16,7 @@ import {
 
 
 
-const Main = () => {
+const Main = (props) => {
 
     // TABLE______________________________________________________TABLE 
 
@@ -25,7 +25,7 @@ const Main = () => {
     const [cleanData, setCleanData] = useState([]);
 
     // ____________________________collect data from coinApi methods
-    const getMarketData = coinApi.getMarketData();
+    const getMarketData = coinApi.getMarketData(props.currency.name);
 
     // ___________________________API calls to get necessary data for
     // ___________________________creation of table row
@@ -39,13 +39,13 @@ const Main = () => {
     // _________________ collect new data onreload or every span of time
     useEffect(() => {
         getAllData();
-    }, []);
+    }, [props.currency]);
 
     useEffect(() => {
         if (allData) {
             setCleanData([]);
             allData.map((coin) => {
-                const NewParse = new ParseData(coin);
+                const NewParse = new ParseData(coin, props.currency);
                 NewParse.parse();
                 const finalData = NewParse.currentCoin;
                 setCleanData(cleanData => [...cleanData, finalData]);
@@ -92,7 +92,7 @@ const Main = () => {
     const getWeekData = (coin) => {
         // gather data then insert into state variables
         coin = coin.toLowerCase();
-        coinApi.getWeek(coin).then(response => {
+        coinApi.getWeek(coin, props.currency.name).then(response => {
             let priceArr = response.prices.map((num, numIndex) => {
                 return { day: dateArr[numIndex], price: num[1].toFixed(2) }
             })
@@ -133,6 +133,7 @@ const Main = () => {
                     closeGraphs={closeGraphs}
                     priceData={priceData}
                     volumeData={volumeData}
+                    currency={props.currency}
                 />
             }
             <MainDiv>

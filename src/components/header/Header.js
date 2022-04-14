@@ -5,13 +5,11 @@ import { useState, useRef, useEffect } from 'react';
 const {
     title,
     image,
-    modes,
-    frequency,
     currency,
     links
 } = HeaderData;
 
-const Header = () => {
+const Header = (props) => {
 
     // ______________________________________________Links
 
@@ -63,6 +61,11 @@ const Header = () => {
         }
     }, [openFreq, openCurrency])
 
+    // currency manipulations___________________________________________ currency
+
+    const switchCurrency = (currency) => {
+        props.switchCurrency(currency)
+    };
 
 
     // ______________________________________________ Links
@@ -82,15 +85,15 @@ const Header = () => {
                             ref={dropDownRef}>
                             <p
                                 onClick={toggleCurrency}>
-                                {currency[0].type}
+                                {props.currency.name.toUpperCase()}
                             </p>
                             <SelectPopup open={openCurrency}>
-                                <SelectSearch>
-                                </SelectSearch>
                                 {currency.map((type, typeIndex) => {
                                     return (
-                                        <Option key={typeIndex}>
-                                            <OptionText>{type.type}</OptionText>
+                                        <Option
+                                            key={typeIndex}
+                                            onClick={() => switchCurrency(type)}>
+                                            <OptionText>{type.name}</OptionText>
                                         </Option>
                                     )
                                 })}

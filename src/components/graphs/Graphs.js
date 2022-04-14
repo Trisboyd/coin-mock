@@ -34,12 +34,12 @@ const Graphs = (props) => {
 
     const convertNum = (num) => {
         if (num > 1000000000) {
-            return `$${(num / 1000000000).toFixed(2)} B`;
+            return `${props.currency.symbol}${(num / 1000000000).toFixed(2)} B`;
         }
         else if (num > 1000000) {
-            return `$${(num / 1000000).toFixed(2)} M`;
+            return `${props.currency.symbol}${(num / 1000000).toFixed(2)} M`;
         }
-        else return `$${num}`;
+        else return `${props.currency.symbol}${num}`;
     }
 
     const toolPriceInfo = (tooltipProps) => {
