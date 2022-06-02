@@ -11,18 +11,6 @@ const {
 
 const Header = (props) => {
 
-    // ______________________________________________Links
-
-    const [hovered, setHovered] = useState(false);
-
-    const onHover = () => {
-        setHovered(true);
-    }
-
-    const onLeave = () => {
-        setHovered(false);
-    }
-
     // _______________________________________________Popups
 
     const [openFreq, setOpenFreq] = useState(false);
@@ -121,10 +109,13 @@ const Header = (props) => {
                         </Links>
                     </Nav>
                     <Register>
-                        <Sign>
+                        <Sign
+                            onClick={props.openRegister}>
                             Login
                         </Sign>
-                        <Sign $active={true}>
+                        <Sign
+                            onClick={props.openRegister}
+                            $active={true}>
                             Register
                         </Sign>
                     </Register>

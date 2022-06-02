@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import Controls from "../controls/Controls";
 import Table from "../table/Table";
 import Graphs from "../graphs/Graphs";
+import AuthPopup from "../auth/AuthPopup";
+
 // ____________________________________________classes
 import coinApi from '../../utilities/CoinApi';
 import ParseData from '../../utilities/ParseData';
@@ -53,6 +55,9 @@ const Main = (props) => {
         }
     }, [allData]);
 
+    // AUTHORIZATION_______________________________________________________AUTHORIZATION
+
+
     // GRAPHS____________________________________________________________GRAPHS
 
     // ___________________________________state variables for market data
@@ -68,8 +73,9 @@ const Main = (props) => {
         setGraphPopup(true);
     }
 
-    const closeGraphs = () => {
+    const closePopups = () => {
         setGraphPopup(false);
+        props.closeRegister(false);
     }
 
     // ________________________________________format date to be read by newsApi
@@ -126,11 +132,14 @@ const Main = (props) => {
 
     return (
         <MainSection>
+            <AuthPopup
+                open={props.authOpen}
+                closePopups={closePopups} />
             {popupData &&
                 <Graphs
                     open={graphPopup}
                     data={popupData}
-                    closeGraphs={closeGraphs}
+                    closeGraphs={closePopups}
                     priceData={priceData}
                     volumeData={volumeData}
                     currency={props.currency}

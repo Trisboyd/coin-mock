@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 function App() {
 
+  // Currencies________________________________
   const [pageCurrency, setPageCurrency] = useState({
     name: 'usd',
     symbol: '$'
@@ -13,13 +14,29 @@ function App() {
     setPageCurrency(sign)
   }
 
+  // AUTHORIZATION_______________________________________AUTHORIZATION
+
+  const [registerPopup, setRegisterPopup] = useState(false);
+
+  const openRegister = () => {
+    setRegisterPopup(true);
+  }
+
+  const closeRegister = () => {
+    setRegisterPopup(false);
+  }
+
   return (
     <>
       <Header
         switchCurrency={switchCurrency}
-        currency={pageCurrency} />
+        currency={pageCurrency}
+        openRegister={openRegister} />
       <Main
-        currency={pageCurrency} />
+        authOpen={registerPopup}
+        currency={pageCurrency}
+        closeRegister={closeRegister}
+      />
     </>
   );
 }
