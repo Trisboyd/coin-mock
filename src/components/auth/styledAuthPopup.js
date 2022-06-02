@@ -45,11 +45,16 @@ export const Section = styled.div`
     }
 `
 export const PopupForm = styled.form`
-width: 250px;
-height: 200px;
-position: relative;
+width: 80%;
+height: 80%;
 background: #170D21;
 border-radius: 6px;
+margin: auto;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+padding: 20px;
 
 @media (max-width: 768px) {
     width: 175px;
@@ -61,41 +66,11 @@ border-radius: 6px;
     height: 200px;
     margin-bottom: 10px;
 }
-    `
-export const FormTitle = styled.h3`
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 29px;
-    color: #000000;
-    width: 330px;
-    margin: 34px 64px 24.26px 36px;
-    `
-export const FormInput = styled.input`
-    width: 83.5%;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    vertical-align: text-top;
-    color: #000000;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    margin-left: 36px;
-    padding-bottom: 13.26px;
-
-    :focus {
-        outline: none;
-        border-bottom: 1px solid #000;
-    }
 `
-export const FormLabel = styled.label`
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 15px;
-    color: #2F71E5;
-    margin: 13px 0 9px 36px;
+export const Title = styled.h2`
+    font-size: 30px;
+    margin: 0 auto;
+    color: white;
 `
 export const FormErrorMessage = styled.span`
     font-family: 'Inter', sans-serif;
@@ -116,13 +91,17 @@ export const FormSwitch = styled.p`
     font-size: 14px;
     line-height: 17px;
     text-align: center;
-    color: #000000;
+    color: white;
     margin: 16px auto 28px auto;
 `
 export const FormSwitchSpan = styled.a`
-    color: #2F71E5;
+    color: white;
     cursor: pointer;
     margin-left: 8px;
+
+    :hover {
+        opacity: 0.7;
+    }
 `
 export const FormEmailError = styled.p`
 font-family: Inter;
@@ -132,4 +111,36 @@ font-size: 12px;
 line-height: 15px;
 text-align: center;
 color: #FF0000;
+`
+export const InputContainer = styled.div`
+    position: relative;
+    width: 80%;
+    margin: 25px auto;
+
+    @media (max-width: 525px) {
+        width: 90%;
+        margin: 15px auto;
+    }
+`
+export const Input = styled.input`
+    width: 100%;
+    height: 32px;
+    margin: 0 auto;
+    border-radius: 6px;
+`
+export const InputLabel = styled.label`
+    font-family: 'Noto', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    position: absolute;
+    margin: 1.5% 0 0 1%;
+    transition: 0.3s ease all;
+    transform: ${props => props.hasValue ? 'translate(0, -28px) scale(1)' : ''};
+    color: ${props => props.hasValue ? 'white' : '#B700FF'};
+
+    ${InputContainer}:hover & {
+        transform: translate(0, -28px) scale(1);
+        color: white;
+    }
 `

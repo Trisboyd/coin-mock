@@ -161,7 +161,7 @@ export const Sign = styled.button`
     cursor: pointer;
     margin-left: 10px;
     padding: 7px 10px 8px;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 6px;
     color: ${props => props.$active ? 'black' : '#B700FF'};
     background: ${props => props.$active ? '#B700FF' : 'inherit'};
