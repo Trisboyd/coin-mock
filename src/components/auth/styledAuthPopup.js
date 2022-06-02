@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Sign } from '../header/styledHeader';
 
 export const PopupContainer = styled.div`
     max-width: 430px;
@@ -143,4 +144,8 @@ export const InputLabel = styled.label`
         transform: translate(0, -28px) scale(1);
         color: white;
     }
+`
+export const Button = styled(Sign)`
+    font-size: 20px;
+    opacity: ${props => props.isValid ? 1 : 0.7};
 `

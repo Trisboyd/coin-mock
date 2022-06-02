@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
     Overlay,
     Section,
@@ -14,6 +14,7 @@ import {
     InputContainer,
     Input,
     InputLabel,
+    Button,
 } from './styledAuthPopup';
 import exit from '../../images/exit.svg';
 import { Sign } from "../header/styledHeader";
@@ -39,39 +40,117 @@ const AuthPopup = (props) => {
         return formTitle.filter((title) => title !== formTitle[formState]);
     }
 
+    // iNPUTS AND VALIDATION_______________________________________________________INPUTS AND VALIDATION
+    const [inputs, setInputs] = useState({
+        email: '',
+        password: '',
+        name: ''
+    })
+
+    // reset inputs everytime popup is opened
+    useEffect(() => {
+        resetInputs();
+        setIsValid(false);
+    }, [props.open]);
+
+    const formRef = useRef();
+
+    // update submit button based on validity of form inputs
+    const checkFormValidity = (event) => {
+        setIsValid(formRef.current.checkValidity());
+    }
+
+    //  Validation messages
+    const [errorMessages, setErrorMessages] = useState(
+        { email: '', password: '', name: '' }
+    );
+
+    const updateErrorMessages = (event) => {
+        const { id, validationMessage } = event.target;
+        setErrorMessages({
+            ...errorMessages,
+            [id]: validationMessage
+        })
+    }
+
+    // change inputs and error messages based on user input
+    const handleChange = (event) => {
+        const { id, value } = event.target;
+        errorMessages[id] && updateErrorMessages(event);
+        setInputs({
+            ...inputs,
+            [id]: value
+        });
+    };
+
+    // reset inputs
+    const resetInputs = () => {
+        setInputs({
+            email: '',
+            password: '',
+            name: ''
+        })
+        setErrorMessages({
+            email: '',
+            password: '',
+            name: ''
+        })
+    }
+
+    // login/signup function
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (formState === 0) {
+            props.handleSignin(inputs);
+        }
+        else
+            props.handleSignup(inputs);
+    }
+
     return (
         <Overlay open={props.open}>
             <Section>
                 <Exit
                     src={exit}
                     onClick={props.closePopups} />
-                <PopupForm>
-                    <Title>Login</Title>
+                <PopupForm
+                    ref={formRef}
+                    onChange={checkFormValidity}
+                    onSubmit={handleSubmit}>
+                    <Title>{formTitle[formState]}</Title>
                     <InputContainer>
                         <InputLabel
-                            for='email'>
+                            for='email'
+                            hasValue={inputs.email}>
                             email
                         </InputLabel>
                         <Input
                             type='email'
                             id='email'
+                            onChange={handleChange}
+                            value={inputs.email}
                         />
                     </InputContainer>
-                    {/* <FormErrorMessage>{errorMessages.email}</FormErrorMessage> */}
+                    <FormErrorMessage>{errorMessages.email}</FormErrorMessage>
                     <InputContainer>
                         <InputLabel
-                            for='password'>
+                            for='password'
+                            hasValue={inputs.password}>
                             password
                         </InputLabel>
                         <Input
                             type='password'
                             id='password'
+                            onChange={handleChange}
+                            value={inputs.password}
                         />
                     </InputContainer>
-                    <Sign
+                    <FormErrorMessage>{errorMessages.password}</FormErrorMessage>
+                    <Button
+                        isValid={isValid}
                         $active={true}>
                         Submit
-                    </Sign>
+                    </Button>
                     <FormSwitch>or
                         <FormSwitchSpan
                             onClick={swapFormTitle}>
